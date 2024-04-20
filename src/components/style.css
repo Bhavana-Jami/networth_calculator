@@ -1,0 +1,8 @@
+:root {
+  --blue: #011c46;
+  --white: #fff;
+}
+#title {
+  text-align: start !important;
+  color: var(--blue) !important;
+}
