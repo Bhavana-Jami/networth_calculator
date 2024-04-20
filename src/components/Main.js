@@ -42,18 +42,18 @@ function Main() {
                     </Grid>
                 </Grid>
                 <Grid item xs={8} border={1} borderColor={'grey.500'} >
-                    <Grid container  sx={{ display: "flex", justifyContent: "center", alignItems:"center", padding:"1rem"}}>
-                        <Grid item xs={11} border={1} borderColor={'grey.500'}>
-                            <Grid container  sx={{marginBottom:"1rem"}}>
-                                <Grid item xs={12}>Networth Summary</Grid>
+                    <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "1rem", gap: "1.2rem" }}>
+                        <Grid item xs={11} border={1} borderColor={'grey.500'} >
+                            <Grid container sx={{ gap: "1.3rem", padding: "1.3rem 0.6rem" }}>
+                                <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", color: "#011c46", fontWeight: "bold", fontSize: "1.3rem" }}>Networth Summary</Grid>
                                 <Grid item xs={12}>
-                                    <Grid container>
+                                    <Grid container sx={{ color: "#011c46" }}>
 
                                         {[{ item: "Total Assets", value: 123 }, { item: "Total Liabilities", value: 234 }, { item: "Networth", value: 45654 }].map((item) => {
                                             return (
-                                                <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+                                                <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap:"0.4rem" }}>
                                                     <Grid item>{item.item}</Grid>
-                                                    <Grid item>{item.value}</Grid>
+                                                    <Grid item sx={{ fontWeight: "bold" }}>{item.value}</Grid>
                                                 </Grid>
                                             )
                                         })}
