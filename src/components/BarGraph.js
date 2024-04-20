@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { type } from '@testing-library/user-event/dist/type';
 
 ChartJS.register(
   CategoryScale,
@@ -44,6 +45,7 @@ function BarGraph() {
         borderWidth: 1,
         barThickness: 140,
         categoryPercentage: 10,
+        // yAxisID:"Dollars"
       }
     ]
   };
@@ -52,6 +54,7 @@ function BarGraph() {
     responsive: true,
     plugins: {
       legend: {
+
         onClick: (event, legendItem, legend) => {
           const index = legend.chart.data.labels.indexOf(legendItem.text)
           legend.chart.toggleDataVisibility(index)
@@ -59,6 +62,10 @@ function BarGraph() {
           legend.chart.update()
         },
         labels: {
+          usePointStyle: true,
+          padding: 27, // Adjust the padding between legend items
+          // fontColor: 'red',
+          // fontSize:200,
           generateLabels: (chart) => {
             let visibility = [];
             for (let i = 0; i < chart.data.labels.length; i++) {
@@ -90,19 +97,15 @@ function BarGraph() {
         color: '#011c46',
       },
     },
-    
+
     scales: {
-      // indexAxis: 'y',
       x: {
         grid: {
           display: false,
         },
-        ticks: {
-          display: false,
-        },
-       // Adjust category spacing here
       },
       y: {
+        // type:"dollars",
         beginAtZero: true,
       },
     },

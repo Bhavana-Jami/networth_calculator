@@ -5,22 +5,27 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import SliderComponent from './SliderComponent';
 
-function AccordionComponent() {
+function AccordionComponent(props) {
     return (
         <Accordion>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: 'white' }}/>}
+                expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
                 aria-controls="panel1-content"
                 id="panel1-header"
-                sx={{ backgroundColor: '#011c46', color: 'white',fontWeight:'bold' }}
+                sx={{ backgroundColor: '#011c46', color: 'white', fontWeight: 'bold' }}
             >
-                Accordion
+                {props.title}
             </AccordionSummary>
             <AccordionDetails>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                {props.title === "Total Assets" ?
+                    ["asd", "asdf"].map((data) => <SliderComponent inputTitle={data} />):
+                    ["bha", "asdfsadfdff"].map((data) => <SliderComponent inputTitle={data} />)
+            }
             </AccordionDetails>
+
+
         </Accordion>
     )
 }

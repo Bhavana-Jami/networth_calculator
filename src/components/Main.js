@@ -37,13 +37,13 @@ function Main() {
             >
                 <Grid item xs={4} paddingRight="2%" >
                     <Grid container spacing={2} paddingTop="0">
-                        <Grid item xs={12}><AccordionComponent /></Grid>
-                        <Grid item xs={12}><AccordionComponent /></Grid>
+                        <Grid item xs={12}><AccordionComponent title="Total Assets"/></Grid>
+                        <Grid item xs={12}><AccordionComponent title="Total Liabilities"/></Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={8} border={1} borderColor={'grey.500'} >
+                <Grid item xs={8} border={1} borderColor={'#e1e1e1'} >
                     <Grid container sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "1rem", gap: "1.2rem" }}>
-                        <Grid item xs={11} border={1} borderColor={'grey.500'} >
+                        <Grid item xs={11} border={1} borderColor={'#e1e1e1'} >
                             <Grid container sx={{ gap: "1.3rem", padding: "1.3rem 0.6rem" }}>
                                 <Grid item xs={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", color: "#011c46", fontWeight: "bold", fontSize: "1.3rem" }}>Networth Summary</Grid>
                                 <Grid item xs={12}>
@@ -53,7 +53,7 @@ function Main() {
                                             return (
                                                 <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap:"0.4rem" }}>
                                                     <Grid item>{item.item}</Grid>
-                                                    <Grid item sx={{ fontWeight: "bold" }}>{item.value}</Grid>
+                                                    <Grid item sx={{ fontWeight: "bold", fontSize:"1rem"}}>${item.value}</Grid>
                                                 </Grid>
                                             )
                                         })}
@@ -61,7 +61,7 @@ function Main() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={11} border={1} borderColor={'grey.500'} ><BarGraph /></Grid>
+                        <Grid item xs={11} border={1} borderColor={'#e1e1e1'} sx={{padding:"1rem"}} ><BarGraph /></Grid>
                     </Grid>
                 </Grid>
             </Grid>
