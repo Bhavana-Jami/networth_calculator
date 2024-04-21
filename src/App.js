@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import BarGraph from './components/BarGraph';
 import Main from './components/Main';
 import '@fontsource/roboto/300.css';

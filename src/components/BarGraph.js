@@ -41,6 +41,7 @@ function BarGraph(props) {
 
   const options = {
     responsive: true,
+    // maintainAspectRatio: false,
     plugins: {
       legend: {
 
