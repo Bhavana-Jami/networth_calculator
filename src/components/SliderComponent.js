@@ -2,11 +2,6 @@ import { Box, FormControl, InputLabel, OutlinedInput, InputAdornment, Slider } f
 import React, { useState } from 'react'
 
 function SliderComponent(props) {
-    const [sliderValue, setSliderValue] = useState()
-    const handleSliderChange=(e)=>{
-        setSliderValue(e.target.value)
-        // props.sendSliderValueToParent(sliderValue)
-    }
     return (
         <Box>
             <FormControl fullWidth sx={{ m: 1 }}>
@@ -18,7 +13,7 @@ function SliderComponent(props) {
                     value={props.value}
                 />
             </FormControl>
-            <Slider defaultValue={props.value} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={handleSliderChange} />
+            <Slider defaultValue={props.value} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} />
         </Box>
     )
 }

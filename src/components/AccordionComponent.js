@@ -1,34 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
-import SliderComponent from './SliderComponent';
 import { Box, FormControl, InputLabel, OutlinedInput, InputAdornment, Slider } from '@mui/material'
-
 
 function AccordionComponent(props) {
 
+    const [yourAssets, setYourAssets] = useState(
+        [{ id: 1, inputTitle: "Real estate", value: 650, onChange: (event) => handleInputChange(1, event) },
+        { id: 2, inputTitle: "Personal property", value: 130, onChange: (event) => handleInputChange(2, event) },
+        { id: 3, inputTitle: "Investments", value: 110, onChange: (event) => handleInputChange(3, event) },
+        { id: 4, inputTitle: "Cash", value: 190, onChange: (event) => handleInputChange(4, event) }])
+    const [yourLiabilities, setYourLiabilities] = useState(
+        [{ id: 1, inputTitle: "Mortagage balance", value: 650, onChange: (event) => handleLiabilityInputChange(1, event) },
+        { id: 2, inputTitle: "Loan balances", value: 130, onChange: (event) => handleLiabilityInputChange(2, event) },
+        { id: 3, inputTitle: "Credit card debt", value: 110, onChange: (event) => handleLiabilityInputChange(3, event) },
+        ])
 
-    // const [realEstateInputValue, setRealEstateInputValue] = useState(500)
+    const handleInputChange = (id, event) => {
+        setYourAssets(prevAssets =>
+            prevAssets.map(asset =>
+                asset.id === id ? { ...asset, value: event.target.value } : asset
+            )
+        );
+    }
+    const handleLiabilityInputChange = (id, event) => {
+        setYourLiabilities(prevAssets =>
+            prevAssets.map(asset =>
+                asset.id === id ? { ...asset, value: event.target.value } : asset
+            )
+        );
 
-    // const handleInputChange = () => {
+    }
+    const sumOfAssetValues = yourAssets.reduce((total, asset) => total + parseFloat(asset.value), 0);
+    const sumOfLiabilityValues = yourLiabilities.reduce((total, liability) => total + parseFloat(liability.value), 0);
+    // sending props to parent aka Main.js
+    useEffect(() => {
 
-    // }
-    // const handlePersonalInputChange = () => {
+        props.gettingSumValue(sumOfAssetValues, sumOfLiabilityValues, "hi from child")
+        props.gettingSumValue(sumOfAssetValues, sumOfLiabilityValues, "hi from child")
 
-    // }
-    // const handleRealInputChange = (e) => {
-    //     realEstateInputValue(e.target.value)
+    }, [sumOfAssetValues, sumOfLiabilityValues])
 
-    // }
-    // const yourAssets =
-    //     [{ id: 1, inputTitle: "Real estate", value: 1000, onChange: (event) => handleRealInputChange(1, event), state: realEstateInputValue },
-    //     { id: 2, inputTitle: "Personal property", value: 100, onChange: (event) => handlePersonalInputChange(2, event) },
-    //     { id: 3, inputTitle: "Investments", value: 100, onChange: (event) => handleInputChange(3, event) },
-    //     { id: 4, inputTitle: "Cash", value: 100, onChange: (event) => handleInputChange(4, event) }]
 
     return (
         <Accordion>
@@ -43,35 +57,36 @@ function AccordionComponent(props) {
             <AccordionDetails>
                 {
                     props.title === "Total Assets" ?
-                        [{ inputTitle: "Real estate", value: 100000 },
-                        { inputTitle: "Personal property", value: 100 },
-                        { inputTitle: "Investments", value: 100 },
-                        { inputTitle: "Cash", value: 100 }].map((data) => <SliderComponent inputTitle={data.inputTitle} value={data.value} />) :
-                        [{ inputTitle: "Mortagage balance", value: 100 },
-                        { inputTitle: "Loan balaces", value: 100 },
-                        { inputTitle: "Credit card debt", value: 100 }
-                        ].map((data) => <SliderComponent inputTitle={data.inputTitle} value={data.value} />)
-                }
-                {/* {
-                    props.title === "Total Assets" ?
-                        yourAssets.map((data) => (
-                            <Box>
+                        yourAssets.map((data, index) => (
+                            <Box key={index}>
                                 <FormControl fullWidth sx={{ m: 1 }}>
                                     <InputLabel htmlFor="outlined-adornment-amount">{data.inputTitle}</InputLabel>
                                     <OutlinedInput
                                         id="outlined-adornment-amount"
                                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                         label="Amount"
-                                        value={data.state}
-
+                                        value={data.value}
+                                        onChange={data.onChange}
                                     />
                                 </FormControl>
-                                <Slider defaultValue={0} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} />
-                            </Box>)) : null
-                } */}
+                                <Slider defaultValue={data.value} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} />
+                            </Box>)) :
+                        yourLiabilities.map((data, index) => (
+                            <Box key={index}>
+                                <FormControl fullWidth sx={{ m: 1 }}>
+                                    <InputLabel htmlFor="outlined-adornment-amount">{data.inputTitle}</InputLabel>
+                                    <OutlinedInput
+                                        id="outlined-adornment-amount"
+                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                        label="Amount"
+                                        value={data.value}
+                                        onChange={data.onChange}
+                                    />
+                                </FormControl>
+                                <Slider defaultValue={10} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} />
+                            </Box>))
+                }
             </AccordionDetails>
-
-
         </Accordion>
     )
 }

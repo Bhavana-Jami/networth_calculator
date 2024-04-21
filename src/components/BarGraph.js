@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +9,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { type } from '@testing-library/user-event/dist/type';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,20 +17,13 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-function BarGraph() {
-  // for assets
-  const [realEstateInput, setRealEstateInput] = useState(100)
-  const [personalPropertyInput, setPersonalPropertyInput] = useState(120)
-  // for liabilities
-  const [mortagageBalInput, setMortagageBalInput] = useState(100)
-  const [loanBalInput, setLoanBalInput] = useState(100)
-
+function BarGraph(props) {
   const labels = ["Total Assets", "Total Liabilities"]
   const data = {
     labels,
     datasets: [
       {
-        data: [realEstateInput + personalPropertyInput, mortagageBalInput + loanBalInput],
+        data: [props.assetSum, props.liabilitySum],
         backgroundColor: [
           'rgb(56, 125, 241)',
           'rgb(255, 88, 45)'
@@ -45,7 +35,6 @@ function BarGraph() {
         borderWidth: 1,
         barThickness: 140,
         categoryPercentage: 10,
-        // yAxisID:"Dollars"
       }
     ]
   };
@@ -105,50 +94,14 @@ function BarGraph() {
         },
       },
       y: {
-        // type:"dollars",
         beginAtZero: true,
       },
     },
   };
-  const [isAccordionActive, setIsAccordionActive] = useState(false)
   return (
     <div >
-      {/* <div className='accordion'>
-        <div className='accordion-title' onClick={() => setIsAccordionActive(!isAccordionActive)} >
-          <h2 >Your Assets  {isAccordionActive ? "-" : "+"}</h2>
-         
-        </div>
-        {isAccordionActive && <div style={{ transition: " width 20s, height 20s, transform 20s" }}>
-          <div>
-            <h4>Real estate</h4>
-            <input type='text' value={realEstateInput} />
-            <input type='range' min={0} max={1000} onChange={(e) => setRealEstateInput(e.target.value)} />
-          </div>
-          <div>
-            <h4>Personal property</h4>
-            <input type='text' value={personalPropertyInput} />
-            <input type='range' min={0} max={1000} onChange={(e) => setPersonalPropertyInput(e.target.value)} />
-          </div>
-        </div>}
-      </div> */}
-      {/* <div>
-        <h2>Your Liabilities</h2>
-        <div>
-          <h4>Mortgage balance</h4>
-          <input type='text' value={mortagageBalInput} />
-          <input type='range' min={0} max={1000} onChange={(e) => setMortagageBalInput(e.target.value)} />
-        </div>
-        <div>
-          <h4>Loan balances</h4>
-          <input type='text' value={loanBalInput} />
-          <input type='range' min={0} max={1000} onChange={(e) => setLoanBalInput(e.target.value)} />
-        </div>
-      </div> */}
-      <div >
-        <Bar options={options} data={data} />
-      </div>
+      <Bar options={options} data={data} />
     </div>
-
   )
 }
 
