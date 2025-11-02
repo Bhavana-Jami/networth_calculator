@@ -69,7 +69,7 @@ function AccordionComponent(props) {
                                         onChange={data.onChange}
                                     />
                                 </FormControl>
-                                <Slider defaultValue={data.value} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} />
+                                {/* <Slider defaultValue={data.value} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} /> */}
                             </Box>)) :
                         yourLiabilities.map((data, index) => (
                             <Box key={index}>
@@ -83,7 +83,7 @@ function AccordionComponent(props) {
                                         onChange={data.onChange}
                                     />
                                 </FormControl>
-                                <Slider defaultValue={10} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} />
+                                {/* <Slider defaultValue={10} aria-label="Default" valueLabelDisplay="auto" min={0} max={1000} onChange={data.onChange} /> */}
                             </Box>))
                 }
             </AccordionDetails>

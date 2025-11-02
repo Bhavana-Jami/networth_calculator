@@ -7,12 +7,17 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Button from '@mui/material/Button';
-
+import Nabvar from './components/Navbar'; 
+import Footer from './components/Footer';
+import Dashboard from './components/Dashboard';
 function App() {
   return (
     <div className="App">
-      <Main />
-      {/* <Button variant="contained">Hello world</Button>; */}
+      <Nabvar />
+      {/* <Main /> */}
+      <Dashboard/>
+
+<Footer />      
     </div>
   );
 }

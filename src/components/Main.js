@@ -8,6 +8,7 @@ import { Typography } from '@mui/material';
 import AccordionComponent from './AccordionComponent';
 import '../components/style.css'
 import '../App.css'
+import { Navbar } from './Navbar';
 
 function Main() {
     // getting props from child aka AccordionComponent.js
@@ -19,7 +20,7 @@ function Main() {
     }
     return (
         <Box
-            height="100vh"
+
             width="100%"
             display="flex"
             alignItems="center"
@@ -34,6 +35,7 @@ function Main() {
                 width="90%"
 
             >
+                {/* <Navbar/> */}
                 <Grid item xs={12} sm={4} paddingRight="2%" >
                     <Grid container spacing={2} paddingTop="0" paddingBottom={2}>
                         <Grid item xs={12}><AccordionComponent title="Total Assets" gettingSumValue={gettingSumValue} /></Grid>
